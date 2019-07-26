@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    margin: 50px auto;
+}
+#box{
+    width: 250px;
+    height: 80px;
+    background: #0094FF;
+}
+.address{
+    width: 100%;
+    height: 35px;
+    /* float: left; */
+    font-weight: bold;
+    color: #ffffff;
+}
+.search{
+    width: 210px;
+    height: 40px;
+    text-align: center;
+    color: #666666;
+}
