@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.js 全局属性</title>
+</head>
+<body>
+<div id="mount-point"></div>
+<script src="./vue.js"></script>
+<script>
+    /* Vue.extend( options )*/
+    //创建构造器
+    var Profile = Vue.extend({
+        template:`<p>{{firstName}} {{lastName}} aka {{alias}}</p>`,
+        data:function(){
+            return{
+                firstName:'Walter',
+                lastName:'White',
+                alias:'Heisenberg'
+            }
+        }
+    })
+    //创建Profile实例，并挂载到一个元素上
+    new Profile().$mount('#mount-point');
+
+    /* Vue.nextTick( [callback, context] ) */
+    // 修改数据
+vm.msg = 'Hello'
+// DOM 还没有更新
+Vue.nextTick(function () {
+  // DOM 更新了
+})
+
+// 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+Vue.nextTick()
+  .then(function () {
+    // DOM 更新了
+  })
+  /* Vue.directive( id, [definition] ) */
+  // 注册
+Vue.directive('my-directive', {
+  bind: function () {},
+  inserted: function () {},
+  update: function () {},
+  componentUpdated: function () {},
+  unbind: function () {}
+})
+
+// 注册 (指令函数)
+Vue.directive('my-directive', function () {
+  // 这里将会被 `bind` 和 `update` 调用
+})
+
+// getter，返回已注册的指令
+var myDirective = Vue.directive('my-directive')
+/* Vue.filter( id, [definition] ) */
+// 注册
+Vue.filter('my-filter', function (value) {
+  // 返回处理后的值
+})
+
+// getter，返回已注册的过滤器
+var myFilter = Vue.filter('my-filter')
+/* Vue.component( id, [definition] ) */
+// 注册组件，传入一个扩展过的构造器
+Vue.component('my-component', Vue.extend({ /* ... */ }))
+
+// 注册组件，传入一个选项对象 (自动调用 Vue.extend)
+Vue.component('my-component', { /* ... */ })
+
+// 获取注册的组件 (始终返回构造器)
+var MyComponent = Vue.component('my-component')
+/* Vue.compile( template ) */
+var res = Vue.compile('<div><span>{{ msg }}</span></div>')
+
+new Vue({
+  data: {
+    msg: 'hello'
+  },
+  render: res.render,
+  staticRenderFns: res.staticRenderFns
+})
+/* Vue.observable( object ) */
+const state = Vue.observable({ count: 0 })
+
+const Demo = {
+  render(h) {
+    return h('button', {
+      on: { click: () => { state.count++ }}
+    }, `count is: ${state.count}`)
+  }
+}
+/* Vue.version */
+var version = Number(Vue.version.split('.')[0])
+
+if (version === 2) {
+  // Vue v2.x.x
+} else if (version === 1) {
+  // Vue v1.x.x
+} else {
+  // Unsupported versions of Vue
+}
+</script>
+</body>
+
+</html>
