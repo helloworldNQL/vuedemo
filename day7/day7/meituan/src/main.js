@@ -3,6 +3,9 @@ import Vue from 'vue'
 import App from './App.vue'
 // 全局引入
 import axios from 'axios'
+// 引入路由模块
+import router from './router'
+
 // Vue继承axios
 Vue.prototype.$axios = axios
 Vue.prototype.$author = () => {
@@ -15,5 +18,7 @@ Vant()
 Vue.config.productionTip = false
 
 new Vue({
+  // 让容器装载这个路由插件
+  router,
   render: h => h(App),
 }).$mount('#app')
