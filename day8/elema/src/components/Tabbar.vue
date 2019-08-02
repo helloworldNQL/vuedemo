@@ -1,6 +1,9 @@
 <template>
   <div>
-    <router-view />
+    <!-- 把路由组件缓存到内存里面 -->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
       <!-- <van-tabbar :route="true" v-model="active">-->
       <!-- 声明式导航 :url="t.url" -->
       <!--<van-tabbar-item

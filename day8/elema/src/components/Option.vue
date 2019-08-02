@@ -1,12 +1,14 @@
 <template>
 <div>
+  <!-- <van-sticky :offset-top="65"> -->
     <!-- 下拉菜单 -->
-    <van-dropdown-menu>
+    <van-dropdown-menu :class="{menuFixed}">
       <van-dropdown-item v-model="value1" :options="menu|handleMenu" />
       <van-dropdown-item v-model="value2" :options="option2" />
       <van-dropdown-item v-model="value3" :options="option3" />
       <van-dropdown-item v-model="value4" :options="option4" />
     </van-dropdown-menu>
+  <!-- </van-sticky> -->
 </div>
 </template>
 <script>
@@ -30,7 +32,7 @@ export default {
         { text: '新款商品', value: 2 },
         { text: '活动商品', value: 3 }
       ],
-
+      menuFixed: false
     }
   },
   async created(){
@@ -55,10 +57,36 @@ export default {
       });
       return newMenu;
     }
-  }
+  },
+  activated() {
+    window.onscroll = () => {
+      // 吸顶菜单
+      // console.log(window.scrollY);
+      if (window.scrollY >= 270) {
+        this.menuFixed = true;
+      } else {
+        this.menuFixed = false;
+      }
+    };
+  },
+  deactivated() {
+    window.onscroll = null;
+  },
+  destoryed() {
+    // 在home离场的时候销毁全局监听事件
+    window.onscroll = null;
+  },
 }
 </script>
 
 
+<style scoped>
+.menuFixed {
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  z-index: 99;
+}
+</style>
 
 

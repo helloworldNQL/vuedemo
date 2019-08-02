@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="address">广州</div>
+    <div class="address"><van-icon name="location" @click="goTo" />广州</div>
     <!-- 搜索框 -->
     <van-search
+      v-bind:class="{search:searchFixed}"
       shape="round"
       v-model="value"
       placeholder="搜索饿了么商家、商品名称"
@@ -19,16 +20,40 @@ export default {
     data(){
         return {
             value : '',
+            searchFixed: false
         }
     },
     methods: {
         onSearch() {
 
+        },
+        goTo(){
+          this.$router.push({
+            name: "bar",
+          });
         }
-    }
+    },
+    activated() {
+    window.onscroll = () => {
+      // 吸顶
+      // console.log(window.scrollY);
+      if (window.scrollY >= 30) {
+        this.searchFixed = true;
+      } else {
+        this.searchFixed = false;
+      }
+    };
+  },
+  deactivated() {
+    window.onscroll = null;
+  },
+  destoryed() {
+    // 在home离场的时候销毁全局监听事件
+    window.onscroll = null;
+  },
 }
 </script>
-<style>
+<style  scoped>
 .address{
   background :#0af;
   color: #fff;
@@ -40,5 +65,11 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.search{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
 }
 </style>

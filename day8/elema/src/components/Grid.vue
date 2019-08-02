@@ -43,7 +43,7 @@ export default {
         newimgs.push(j);
       }
       return newimgs;
-      console.log(newimgs)
+      // console.log(newimgs)
     },
   },
   async created(){

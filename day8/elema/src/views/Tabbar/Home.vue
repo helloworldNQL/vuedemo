@@ -3,6 +3,7 @@
     <Search />
     <Grid />
     <Option />
+    <List />
     <Tabbar />
   </div>
 </template>
@@ -12,6 +13,7 @@
 import Search from "../../components/Search.vue";
 import Grid from "../../components/Grid.vue";
 import Option from "../../components/Option.vue";
+import List from "../../components/List.vue";
 import Tabbar from "../../components/Tabbar.vue";
 
 export default {
@@ -20,7 +22,8 @@ export default {
     Search,
     Grid,
     Option,
-    Tabbar
+    Tabbar,
+    List
   }
 };
 </script>
